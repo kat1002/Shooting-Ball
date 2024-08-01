@@ -5,25 +5,23 @@ using UnityEngine;
 public class Entity : MonoBehaviour
 {
 
-    public SceneScripts sc;
     public bool hasMoved = false;
 
     // Start is called before the first frame update
     public virtual void Start()
     {
-        sc = GameObject.FindGameObjectWithTag("PlayGround").GetComponent<SceneScripts>();
     }
 
     // Update is called once per frame
     public virtual void Update()
     {
-        if (sc.RoundEnded && !hasMoved)
+        if (GameManager.Instance.RoundEnded && !hasMoved)
         {
             goDown();
             hasMoved = true;
         }
 
-        if (!sc.RoundEnded) hasMoved = false;
+        if (!GameManager.Instance.RoundEnded) hasMoved = false;
     }
     public void goDown()
     {

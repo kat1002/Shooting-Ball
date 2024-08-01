@@ -13,7 +13,7 @@ public class Obstacle : Entity
     public override void Start()
     {
         base.Start();
-        health = Random.Range(sc.Round, sc.Round*3);
+        health = Random.Range(GameManager.Instance.Round, GameManager.Instance.Round*3);
         curHealth = health;
 
         healthText.text = curHealth.ToString();
@@ -27,7 +27,7 @@ public class Obstacle : Entity
 
         if (transform.position.y <= 1)
         {
-            sc.isGameEnd = true;
+            GameManager.Instance.isGameEnd = true;
         }
     }
 

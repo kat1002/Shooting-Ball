@@ -3,17 +3,16 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class Ball_Bounce : MonoBehaviour
+public class BallController : MonoBehaviour
 {
     private Rigidbody2D rb;
     Vector3 lastVelocity;
-    //[SerializeField] float speed;
+    float lifetime;
 
     // Start is called before the first frame update
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-
     }
 
     // Update is called once per frame
@@ -27,10 +26,9 @@ public class Ball_Bounce : MonoBehaviour
         GameObject collObject = collision.gameObject;
 
         if (collObject.CompareTag("Bottom")) {
-            Destroy(gameObject);
-
-            SceneScripts sc = GameObject.FindGameObjectWithTag("PlayGround").GetComponent<SceneScripts>();
-            sc.Des += 1;
+            ObjectPool.EnqueueObject(this, "Ball");
+                
+            GameManager.Instance.Des += 1;
             return;
         }
         

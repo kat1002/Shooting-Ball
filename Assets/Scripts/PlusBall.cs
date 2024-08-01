@@ -11,7 +11,7 @@ public class PlusBall : Entity
     }
 
     public void AddBall() { 
-        sc.AddPlusBalls();
+        GameManager.Instance.AddPlusBalls();
         Destroy(gameObject);
     }
 

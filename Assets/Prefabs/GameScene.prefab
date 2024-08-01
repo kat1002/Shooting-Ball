@@ -10,10 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 3542651716070854954}
   - component: {fileID: 74073271554854490}
-  - component: {fileID: 1428984456781399897}
+  - component: {fileID: 4248450346363230007}
   m_Layer: 0
   m_Name: GameScene
-  m_TagString: Untagged
+  m_TagString: PlayGround
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28,7 +28,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 10, y: 20, z: 1}
+  m_LocalScale: {x: 7, y: 9.566783, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -85,7 +85,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1428984456781399897
+--- !u!114 &4248450346363230007
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -98,6 +98,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shootPos: {fileID: 0}
-  ball: {fileID: 9027659820870449916, guid: 65c64002e56d9a34e9bc0c853e30d48c, type: 3}
-  player: {fileID: 0}
-  power: 0.05
+  ball: {fileID: 5058029259983967082, guid: 65c64002e56d9a34e9bc0c853e30d48c, type: 3}
+  spawner: {fileID: 0}
+  power: 25
+  isGameEnded: 0
+  tl: {fileID: 0}

@@ -10,22 +10,20 @@ public class EndMenu : MonoBehaviour
     [SerializeField] GameObject endMenuUI;
     [SerializeField] TextMeshProUGUI roundText;
 
-    SceneScripts sc;
 
     private void Start()
     {
-        sc = GameObject.FindGameObjectWithTag("PlayGround").GetComponent<SceneScripts>();
     }
 
     private void Update()
     {
-        roundText.text = sc.Round.ToString();
-        if(sc.isGameEnd) EndGame();
+        roundText.text = GameManager.Instance.Round.ToString();
+        if(GameManager.Instance.isGameEnd) EndGame();
     }
 
     public void EndGame() {
         endMenuUI.SetActive(true);
-        roundText.text = sc.Round.ToString();
+        roundText.text = GameManager.Instance.Round.ToString();
     }
 
     public void Restart()

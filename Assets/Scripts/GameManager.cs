@@ -6,19 +6,21 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SocialPlatforms.Impl;
 
-public class SceneScripts : MonoBehaviour
+public class GameManager : MonoBehaviour
 {
-    [SerializeField] GameObject shootPos;
-    [SerializeField] GameObject ball;
+
+
+    [SerializeField] Transform shootPos;
+    [SerializeField] BallController ball;
     [SerializeField] GameObject spawner;
     [SerializeField] private float power;
-    [SerializeField] private bool isGameEnded = false;
-    private int numOfBalls = 1;
-    private int plusBalls = 0;
-    private int count = 0;
-    private int hasDes = 0;
-    private int thisRound = 0;
-    private int prevRound = 0;
+    [SerializeField] private bool isGameEnded;
+    private int numOfBalls;
+    private int plusBalls;
+    private int count;
+    private int hasDes;
+    private int thisRound;
+    private int prevRound;
 
     Timer ballTimer;
     Spawner spawn;
@@ -26,11 +28,52 @@ public class SceneScripts : MonoBehaviour
     Vector3 startPoint;
     Vector3 endPoint;
 
-    Vector3 s_pos = Vector3.zero;
+    Vector3 s_pos;
 
     public TrajectoryLine tl;
+    private static GameManager _instance;
+
+    public static GameManager Instance
+    {
+        get
+        {
+            if (_instance == null)
+            {
+                // Find the GameManager in the scene
+                _instance = FindObjectOfType<GameManager>();
+
+                // If no GameManager is found, create a new one
+                if (_instance == null)
+                {
+                    GameObject singletonObject = new GameObject("GameManager");
+                    _instance = singletonObject.AddComponent<GameManager>();
+
+                    // Optionally, mark the GameManager to persist between scenes
+                    DontDestroyOnLoad(singletonObject);
+                }
+            }
+            return _instance;
+        }
+    }
+
+    private void Awake()
+    {
+        // If another instance of GameManager exists, destroy it
+        if (_instance != null && _instance != this)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            _instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+
+        InitNewGame();
+    }
 
     #region Fields
+
 
     public bool isGameEnd { 
         get { return isGameEnded; }
@@ -63,6 +106,7 @@ public class SceneScripts : MonoBehaviour
     }
 
     #endregion
+
 
     void Start()
     {
@@ -103,6 +147,23 @@ public class SceneScripts : MonoBehaviour
     }
 
     #region Methods
+
+    private void InitNewGame() {
+        isGameEnded = false;
+        s_pos = Vector3.zero;
+        numOfBalls = 1;
+        plusBalls = 0;
+        count = 0;
+        hasDes = 0;
+        thisRound = 0;
+        prevRound = 0;
+
+        ObjectPool.ClearAllPools();
+        SetupPool();
+    }
+    private void SetupPool() {
+        ObjectPool.SetupPool(ball, 10, "Ball");
+    }
 
     void CalculateThrowVector(Vector3 startPos)
     {
@@ -145,7 +206,9 @@ public class SceneScripts : MonoBehaviour
     void ThrowBall()
     {
         //Debug.Log("Shooted");
-        var b = Instantiate(ball, shootPos.transform.position, Quaternion.identity);
+        var b = ObjectPool.DequeueObject<BallController>("Ball");
+        b.gameObject.transform.position = shootPos.position;
+        b.gameObject.SetActive(true);
         b.GetComponent<Rigidbody2D>().AddForce(new Vector2(throwVector.x, throwVector.y).normalized * power, ForceMode2D.Impulse);
     }
 

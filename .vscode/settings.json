@@ -51,5 +51,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "BBTAN Clone.sln"
+    "dotnet.defaultSolution": "Shooting-Ball.sln"
 }

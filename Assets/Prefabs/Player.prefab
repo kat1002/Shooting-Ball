@@ -201,7 +201,6 @@ GameObject:
   - component: {fileID: 6905813205572807767}
   - component: {fileID: 237844824479473066}
   - component: {fileID: 2208156313297288064}
-  - component: {fileID: 4025636579286544768}
   m_Layer: 0
   m_Name: raycast
   m_TagString: Untagged
@@ -348,15 +347,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lr: {fileID: 0}
---- !u!114 &4025636579286544768
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7959487700513649801}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d38bc501b72e3bf44a4c77e6689d9e56, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

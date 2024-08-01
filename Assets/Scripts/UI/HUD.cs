@@ -9,24 +9,21 @@ public class HUD : MonoBehaviour
     [SerializeField] TextMeshProUGUI roundText;
     [SerializeField] GameObject scene;
 
-    SceneScripts sc;
-
     const string RoundPrefix = "Round: ";
     const string BallPrefix = "Ball: x";
 
     // Start is called before the first frame update
     void Start()
     {
-        sc = scene.GetComponent<SceneScripts>();
 
-        ballText.text = BallPrefix + sc.NumOfBalls;
-        roundText.text = RoundPrefix + sc.Round;
+        ballText.text = BallPrefix + GameManager.Instance.NumOfBalls;
+        roundText.text = RoundPrefix + GameManager.Instance.Round;
     }
 
 
     void Update()
     {
-        ballText.text = BallPrefix + sc.NumOfBalls;
-        roundText.text = RoundPrefix + sc.Round;
+        ballText.text = BallPrefix + GameManager.Instance.NumOfBalls;
+        roundText.text = RoundPrefix + GameManager.Instance.Round;
     }
 }
