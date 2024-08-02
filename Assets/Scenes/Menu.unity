@@ -1106,7 +1106,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: BBTAN  CLONE
+  m_text: Shooting Ball
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4677fbf92089a134dac74ed6ee568b9b, type: 2}
   m_sharedMaterial: {fileID: 2930875427786476491, guid: 4677fbf92089a134dac74ed6ee568b9b, type: 2}
